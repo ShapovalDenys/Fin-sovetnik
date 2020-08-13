@@ -1,0 +1,48 @@
+.testimonials {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+  padding-top: 60px;
+  background: #f3f5f9;
+  &__article {
+    font-size: 70px;
+  }
+  &__carousel {
+    max-width: 700px;
+    margin: 50px auto;
+  }
+  &__wrap {
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-user-picture {
+      margin-bottom: 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+    &-user-article {
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+    &-user-text {
+      font-size: 24px;
+      text-align: center;
+    }
+  }
+}
+
+.carousel-control-next-icon {
+  filter: invert(100%);
+}
+
+.carousel-control-prev-icon {
+  filter: invert(100%);
+}
+
+.carousel-indicators li {
+  display: none;
+}

@@ -1,0 +1,26 @@
+@mixin mainSectionSize {
+  height: 100%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(134, 140, 144, 0.05);
+  border-radius: 16px;
+  padding: 32px;
+  box-sizing: border-box;
+  margin: 10px;
+}
+
+@mixin transitionWebKitDuration {
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+@mixin flexWebKit {
+  display: flex;
+  display: -webkit-flex;
+}
+
+@mixin flexDirectionWebKit {
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}

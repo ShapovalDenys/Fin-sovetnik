@@ -1,0 +1,43 @@
+@import "../../vars.scss";
+
+.methodsCards {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f3f5f9;
+  padding-top: 60px;
+  padding-bottom: 90px;
+  &__article {
+    font-size: 70px;
+  }
+  &__cards {
+    display: flex;
+    width: 70%;
+    margin-top: 50px;
+    justify-content: space-between;
+  }
+  &__card {
+    width: 350px;
+    height: 350px;
+    padding: 50px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 20px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    @include transitionWebKitDuration;
+    &:hover {
+      transform: scale(1.1);
+    }
+    & img {
+      margin-bottom: 30px;
+    }
+    & span {
+      font-size: 20px;
+    }
+  }
+}
