@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getMoneyValue, setMoneyValue } from '../Store/Index';
 
 import './Header.scss';
 
 const Header = () => {
+  const moneyValue = useSelector(getMoneyValue);
+  const [rangeValue, setRangeValue] = useState(moneyValue);
 
-  const [rangeValue, setRangeValue] = useState("30000");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setMoneyValue(rangeValue))
+  }, [rangeValue])
 
   return (
   <div className="header">

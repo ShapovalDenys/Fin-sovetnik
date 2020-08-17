@@ -1,0 +1,35 @@
+@import "../../vars.scss";
+
+.mainHeader {
+  margin: 0 auto;
+  max-width: 1920px;
+  height: 190px;
+  background-image: url(./bar.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 126px;
+  &__nav {
+    width: 60%;
+    &-list {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    &-link {
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      padding: 15px 0;
+      @include transitionWebKitDuration;
+      &:hover {
+        color: whitesmoke;
+      }
+    }
+    &-link.active {
+      border-bottom: 2px solid white;
+    }
+  }
+}

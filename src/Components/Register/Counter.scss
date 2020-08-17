@@ -1,0 +1,44 @@
+.counter {
+  max-width: 1354px;
+  height: 458px;
+  margin: 100px auto 0;
+  border-radius: 100px;
+  box-shadow: 0 3px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 100px;
+  &__wrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    &-paragraf {
+      margin-top: 50px;
+      font-size: 25px;
+      color: #afafaf;
+      text-align: center;
+    }
+  }
+  &__wrap-inner {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    &-text {
+      font-size: 25px;
+      color: #afafaf;
+    }
+    &-counter {
+      margin-top: 30px;
+      font-size: 65px;
+      font-weight: bold;
+      color: #0dd542;
+    }
+    &-summ {
+      margin-top: 30px;
+      font-size: 65px;
+      font-weight: bold;
+      color: #ffa20e;
+    }
+  }
+}

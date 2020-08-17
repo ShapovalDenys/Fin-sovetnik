@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Footer.scss';
 
@@ -7,7 +8,7 @@ const Footer = () => (
     <div className="footer__inner">
 
       <div className="footer__inner-left">
-        <img src="./img/logo.png" alt="logo"></img>
+        <Link to="/index"><img src="./img/logo.png" alt="logo"></img></Link>
         <p>
           8 (9963) 22-37-16<br></br>
           support@moneydar.ru<br></br>
