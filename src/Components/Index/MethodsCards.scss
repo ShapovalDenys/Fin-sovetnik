@@ -2,6 +2,7 @@
 
 .methodsCards {
   margin: 0 auto;
+  max-width: 1920px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +20,6 @@
   }
   &__card {
     width: 350px;
-    height: 350px;
     padding: 50px;
     box-sizing: border-box;
     box-shadow: 0 1px 20px rgba(0,0,0,0.2);
@@ -35,9 +35,61 @@
     }
     & img {
       margin-bottom: 30px;
+      width: 105px;
     }
     & span {
       font-size: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1680px) {
+  .methodsCards {
+    &__card {
+      margin-right: 10px;
+      padding: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 935px) {
+  .methodsCards {
+    &__article {
+      font-size: 50px;
+    }
+    &__cards {
+      width: 95%;
+    }
+    &__card {
+      max-width: 280px;
+      padding: 20px 10px;
+      & img {
+        width: 85px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 666px) {
+  .methodsCards {
+    padding-top: 40px;
+    padding-bottom: 30px;
+    &__article {
+      font-size: 22px;
+    }
+    &__cards {
+      width: 95%;
+    }
+    &__card {
+      max-width: 180px;
+      padding: 20px 5px;
+      & span {
+        font-size: 10px;
+      }
+      & img {
+        width: 85px;
+        height: 80px;
+      }
     }
   }
 }

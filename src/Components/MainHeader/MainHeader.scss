@@ -3,7 +3,6 @@
 .mainHeader {
   margin: 0 auto;
   max-width: 1920px;
-  height: 190px;
   background-image: url(./bar.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,6 +18,7 @@
       width: 100%;
     }
     &-link {
+      cursor: pointer;
       font-size: 20px;
       font-weight: bold;
       color: white;
@@ -30,6 +30,57 @@
     }
     &-link.active {
       border-bottom: 2px solid white;
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .mainHeader {
+    padding-right: 56px;
+    & a {
+      margin-top: 10px;
+      width: 40%;
+    }
+    & a img {
+      width: 100%;
+    }
+    &__nav {
+      width: 90%;
+      &-link {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .mainHeader {
+    padding-right: 0;
+    padding-bottom: 40px;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .mainHeader {
+    & a {
+      width: 70%;
+    }
+    &__nav {
+      width: 95%;
+      &-link {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .mainHeader {
+    &__nav {
+      &-link {
+        font-size: 8px;
+      }
     }
   }
 }

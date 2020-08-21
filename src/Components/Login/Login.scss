@@ -1,0 +1,148 @@
+@import "../../vars.scss";
+
+.login {
+  position: relative;
+  max-width: 1354px;
+  margin: 100px auto 0;
+  border-radius: 100px;
+  box-shadow: 0 3px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 80px 100px 80px 200px;
+  &__article {
+    font-size: 65px;
+    font-weight: bold;
+    color: #ffa20e;
+  }
+  &__link {
+    margin-top: 30px;
+    font-size: 35px;
+    color: #afafaf;
+    text-decoration: underline;
+    @include  transitionWebKitDuration;
+    &:hover {
+      color: #ffca38;
+    }
+  }
+  &__form {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-inner {
+      margin-top: 70px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    &-input {
+      width: 47%;
+      height: 80px;
+      border-radius: 40px;
+      border: 1px solid #dbdbdb;
+      padding-left: 20px;
+      font-size: 25px;
+    }
+    &-button {
+      width: 50%;
+      height: 80px;
+      color: white;
+      background: #0dd542;
+      border: 1px solid #0dd542;
+      border-radius: 40px;
+      font-size: 25px;
+      font-weight: bold;
+      margin-top: 50px;
+      @include  transitionWebKitDuration;
+      box-shadow: 0 3px 30px rgba(0,0,0,0.2);
+      &:hover {
+        color: #0dd542;
+        background-color: white;
+      }
+    }
+  }
+  &__picture {
+    position: absolute;
+    left: -180px;
+    top: 20px;
+  }
+}
+
+@media screen and (max-width: 1550px) {
+  .login {
+    transform: scale(0.8);
+  }
+}
+
+@media screen and (max-width: 1111px) {
+  .login {
+    max-width: 100%;
+    width: 100%;
+    padding: 20px;
+    align-items: center;
+    margin-bottom: -100px;
+    &__picture {
+      display: none;
+    }
+    &__form {
+      width: 90%;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .login {
+    &__article {
+      font-size: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .login {
+    &__article {
+      font-size: 30px;
+    }
+    &__link {
+      font-size: 25px;
+    }
+    &__form {
+      width: 90%;
+      &-inner {
+        margin-top: 30px;
+      }
+      &-input {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .login {
+    border-radius: 50px;
+    padding: 30px 0;
+    margin-top: 0;
+    &__article {
+      text-align: center;
+    }
+    &__link {
+      font-size: 20px;
+    }
+    &__form {
+      &-inner {
+        flex-direction: column;
+        align-items: center;
+      }
+      &-input {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+      &-button {
+        margin-top: 15px;
+        width: 100%;
+      }
+    }
+  }
+}

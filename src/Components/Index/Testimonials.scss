@@ -1,6 +1,7 @@
 .testimonials {
   margin: 0 auto;
   display: flex;
+  max-width: 1920px;
   flex-direction: column;
   align-items: center;
   margin-bottom: 50px;
@@ -45,4 +46,26 @@
 
 .carousel-indicators li {
   display: none;
+}
+
+@media screen and (max-width: 666px) {
+  .testimonials {
+    padding-top: 30px;
+    &__article {
+      font-size: 35px;
+    }
+    &__wrap {
+      height: 600px;
+      &-user-article {
+        width: 70%;
+        text-align: center;
+        display: block;
+        margin-bottom: 45px;
+      }
+      &-user-text {
+        font-size: 24px;
+        text-align: center;
+      }
+    }
+  }
 }

@@ -21,7 +21,7 @@ const Testimonials = () => {
           <div className="testimonials__wrap">
             <img
               className="testimonials__wrap-user-picture"
-              src="./img/111.jpg"
+              src="./img/555.jpg"
               alt="testimonials-user"
               />
             <h4 className="testimonials__wrap-user-article">Анатолий Виниамидов</h4>
@@ -36,7 +36,7 @@ const Testimonials = () => {
           <div className="testimonials__wrap">
             <img
               className="testimonials__wrap-user-picture"
-              src="./img/444.jpg"
+              src="./img/111.jpg"
               alt="testimonials-user"
               />
             <h4 className="testimonials__wrap-user-article">Валерий Винокуров</h4>
@@ -51,7 +51,7 @@ const Testimonials = () => {
           <div className="testimonials__wrap">
             <img
               className="testimonials__wrap-user-picture"
-              src="./img/555.jpg"
+              src="./img/444.jpg"
               alt="testimonials-user"
               />
             <h4 className="testimonials__wrap-user-article">Анастасия Поникарова</h4>

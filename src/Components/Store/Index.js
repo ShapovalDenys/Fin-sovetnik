@@ -2,17 +2,111 @@ import { createStore } from 'redux';
 
 // Action types - is just a constant. MUST have a unique value.
 const MONEY_VALUE = 'MONEY_VALUE';
+const PASSPORT_ACCESS = 'PASSPORT_ACCESS';
+const MAIN_FORM_DATA = 'MAIN_FORM_DATA';
+const RANGE_STATUS = 'RANGE_STATUS';
+const RANGE_STATUS_SECOND = 'RANGE_STATUS_SECOND'
+const SECOND_FORM_DATA = 'SECOND_FORM_DATA';
+const PAY_ACCESS = 'PAY_ACCESS';
 
 // Action creators - a function returning an action object
-export const setMoneyValue = ( moneyValue = 30000) => ({ type: MONEY_VALUE, moneyValue });
+export const setMoneyValue = ( moneyValue = JSON.parse(localStorage.getItem('MoneyValue')) || 30000) => ({ type: MONEY_VALUE, moneyValue });
+export const setPassportAccess = ( passportAccess = false) => ({ type: PASSPORT_ACCESS, passportAccess });
+export const setPayAccess = ( payAccess = false) => ({ type: PAY_ACCESS, payAccess });
+export const setRangeStatus = ( rangeStatus = 0) => ({ type: RANGE_STATUS, rangeStatus });
+export const setRangeStatusSecond = ( rangeStatusSecond = 0) => ({ type: RANGE_STATUS_SECOND, rangeStatusSecond });
+
+export const setMainFormData= (
+  name = "",
+  surName = "",
+  patronymic = "",
+  email = "",
+  tel = "",
+  dateValue = "") => ({
+    type: MAIN_FORM_DATA,
+    name,
+    surName,
+    patronymic,
+    email,
+    tel,
+    dateValue
+  });
+
+export const setSecondFormData= (
+  passport = "",
+  passportDate = "",
+  passportPlaceOrgan = "",
+  passportPlace = "",
+  region = "",
+  street = "",
+  body = "",
+  city = "",
+  build = "",
+  flat = "",
+  ) => ({
+      type: SECOND_FORM_DATA,
+      passport,
+      passportDate,
+      passportPlaceOrgan,
+      passportPlace,
+      region,
+      street,
+      body,
+      city,
+      build,
+      flat
+    });
 
 // Selectors - a function receiving Redux state and returning some data from it
 export const getMoneyValue = (state) => state.moneyValue;
+export const getPassportAccess = (state) => state.passportAccess;
+export const getRangeStatus = (state) => state.rangeStatus;
+export const getRangeStatusSecond = (state) => state.rangeStatusSecond;
+export const getPayAccess = (state) => state.payAccess;
+
+export const getMainFormDataName = (state) => state.name;
+export const getMainFormDataSurName = (state) => state.surName;
+export const getMainFormDataPatronymic = (state) => state.patronymic;
+export const getMainFormDataEmail = (state) => state.email;
+export const getMainFormDataTel = (state) => state.tel;
+export const getMainFormDataDateValue = (state) => state.dateValue;
+
+
+export const getSecondFormPassport = (state) => state.passport;
+export const getSecondFormPassportDate = (state) => state.passportDate;
+export const getSecondFormPassportPlaceOrgan = (state) => state.passportPlaceOrgan;
+export const getSecondFormPassportPlace = (state) => state.passportPlace;
+export const getSecondFormRegion = (state) => state.region;
+export const getSecondStreet = (state) => state.street;
+export const getSecondFormBody = (state) => state.body;
+export const getSecondFormCity = (state) => state.city;
+export const getSecondFormBuild = (state) => state.build;
+export const getSecondFormFlat = (state) => state.flat;
 
 // Initial state
 
 const initialState = {
-  moneyValue: 30000
+  moneyValue: JSON.parse(localStorage.getItem('MoneyValue')) || 30000,
+  passportAccess: false,
+  payAccess: false,
+  name: "",
+  surName: "",
+  patronymic: "",
+  email: "",
+  tel: "",
+  dateValue: "",
+  rangeStatus: 0,
+  rangeStatusSecond: 0,
+  passport: "",
+  passportDate: "",
+  passportPlaceOrgan: "",
+  passportPlace: "",
+  region: "",
+  street: "",
+  body: "",
+  city: "",
+  build: "",
+  flat: "",
 };
 
 // rootReducer - this function is called after dispatching an action
@@ -22,6 +116,50 @@ const rootReducer = (state = initialState, action) => {
       return { ...state,
         moneyValue: action.moneyValue,
       };
+
+    case PASSPORT_ACCESS:
+      return { ...state,
+        passportAccess: action.passportAccess,
+      };
+
+    case PAY_ACCESS:
+      return { ...state,
+        payAccess: action.payAccess,
+      };
+
+    case MAIN_FORM_DATA:
+      return { ...state,
+        name: action.name,
+        surName: action.surName,
+        patronymic: action.patronymic,
+        email: action.email,
+        tel: action.tel,
+        dateValue: action.dateValue,
+      };
+
+    case SECOND_FORM_DATA:
+      return { ...state,
+        passport: action.passport,
+        passportDate: action.passportDate,
+        passportPlaceOrgan: action.passportPlaceOrgan,
+        passportPlace: action.passportPlace,
+        region: action.region,
+        street: action.street,
+        body: action.body,
+        city: action.city,
+        build: action.build,
+        flat: action.flat,
+        };
+
+    case RANGE_STATUS:
+      return { ...state,
+        rangeStatus: action.rangeStatus,
+    };
+
+    case RANGE_STATUS_SECOND:
+      return { ...state,
+        rangeStatusSecond: action.rangeStatusSecond,
+    };
 
     default:
       return state;

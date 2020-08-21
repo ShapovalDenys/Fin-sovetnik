@@ -12,7 +12,11 @@ const App = () => (
       <Route path="/index" exact component={Index} />
       <Route path="/register" exact component={Register} />
       <Route path="/register2" exact component={Register} />
-      <Redirect to="index/"/>
+      <Route path="/pay" exact component={Register} />
+      <Route path="/analys–1" exact component={Register} />
+      <Route path="/kabinet" exact component={Register} />
+      <Route path="/login" exact component={Register} />
+      <Redirect to="/index"/>
     </Switch>
   </div>
 );

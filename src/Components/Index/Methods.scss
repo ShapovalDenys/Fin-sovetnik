@@ -15,7 +15,7 @@
     margin-top: 50px;
     display: flex;
     justify-content: space-between;
- }
+  }
   &__image {
     width: 200px;
     height: 120px;
@@ -28,6 +28,47 @@
     @include transitionWebKitDuration;
     &:hover {
       transform: scale(1.1);
+    }
+  }
+}
+
+@media screen and (max-width: 1680px) {
+  .methods {
+    &__image {
+      margin-right: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 935px) {
+  .methods {
+    &__image {
+      margin-right: 10px;
+    }
+    &__article {
+      font-size: 50px;
+    }
+    &__images {
+      width: 95%;
+    }
+  }
+}
+
+@media screen and (max-width: 666px) {
+  .methods {
+    margin-bottom: 50px;
+    &__article {
+      font-size: 22px;
+    }
+    &__images {
+      width: 95%;
+      margin-top: 20px;
+    }
+    &__image {
+      height: 60px;
+      & img {
+        width: 30px;
+      }
     }
   }
 }

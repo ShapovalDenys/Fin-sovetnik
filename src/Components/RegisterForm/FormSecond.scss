@@ -1,0 +1,124 @@
+.formSecond {
+  max-width: 1354px;
+  margin: 100px auto 0;
+  border-radius: 100px;
+  box-shadow: 0 3px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 100px;
+  &__form {
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    &-pasportData {
+      display: flex;
+      justify-content: space-between;
+    }
+    &-pasportData-input {
+      height: 120px;
+      width: 31%;
+      border: none;
+      font-weight: 500;
+      padding: 20px 0;
+      border-bottom: 2px solid #dbdbdb;
+      margin-bottom: 40px;
+      font-size: 25px;
+      &::placeholder {
+        white-space: pre-wrap;
+      }
+      &-pass {
+        width: 100%;
+      }
+    }
+  }
+  &__form-adress {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      width: 45%;
+      &-input {
+        height: 120px;
+        width: 100%;
+        border: none;
+        font-weight: 500;
+        padding: 20px 0;
+        border-bottom: 2px solid #dbdbdb;
+        margin-bottom: 40px;
+        font-size: 35px;
+        &-disable {
+          color: #b0b0b0;
+        }
+      }
+    }
+  }
+  &__article {
+    margin-top: 80px;
+  }
+  &__checkbox {
+    margin-top: 60px;
+    &-span {
+      font-weight: bold;
+      color: #ffa20e;
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .formSecond {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 1332px) {
+  .formSecond {
+    padding: 80px 30px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .formSecond {
+    &__article {
+      margin-top: 20px;
+    }
+    &__form {
+      margin-top: 20px;
+      &-pasportData {
+        flex-direction: column;
+        &-input {
+          height: 70px;
+          width: 100%;
+          font-size: 14px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+    &__form-adress {
+      flex-direction: column;
+      &-inner {
+        width: 100%;
+        &-input {
+          height: 80px;
+          margin-bottom: 20px;
+          font-size: 14px;
+        }
+      }
+    }
+    &__checkbox {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .formSecond {
+    border-radius: 50px;
+  }
+}

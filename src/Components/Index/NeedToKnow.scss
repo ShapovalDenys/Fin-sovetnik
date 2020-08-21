@@ -30,3 +30,33 @@
     }
   }
 }
+
+@media screen and (max-width: 666px) {
+  .needToKnow {
+    &__article {
+      font-size: 35px;
+      margin-bottom: 0;
+    }
+    &__wrap {
+      width: 95%;
+      &-left {
+        width: 45%;
+        & h4 {
+          font-size: 16px;
+        }
+        & p {
+          font-size: 10px;
+        }
+      }
+      &-right {
+        width: 45%;
+        & h4 {
+          font-size: 16px;
+        }
+        & p {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
