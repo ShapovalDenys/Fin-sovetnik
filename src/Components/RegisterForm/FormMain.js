@@ -116,7 +116,7 @@ const FormMain = () => {
 
   /*////////////////////////////////////////////*/
 
-  useEffect(() => {
+/*  useEffect(() => {
     if (rangeValue === 35 && !email && check) {
       setDisableButton(false)
     } else if (rangeValue === 42 && check) {
@@ -126,15 +126,60 @@ const FormMain = () => {
     }
   }, [rangeValue, email, check])
 
+  */
 
-  /*////////////////////////////////////////*/
+ useEffect(() => {
+  if (rangeValue === 42 && check) {
+    setDisableButton(false)
+  } else {
+    setDisableButton(true)
+  }
+}, [rangeValue, email, check])
+
+
+  /*///////////////////Redirection/////////////////////*/
   const history = useHistory();
 
-  const onClickNextButton = () => {
-    dispatch(setMainFormData(name, surName, patronymic, email, tel, dateValue));
-    history.push("/register2");
-    dispatch(setRangeStatus(rangeValue));
+  const onClickNextButton = (e) => {
+    e.preventDefault();
+    if (mailValidation.test(email)) {
+      dispatch(setMainFormData(name, surName, patronymic, email, tel, dateValue));
+      history.push("/register2");
+      dispatch(setRangeStatus(rangeValue));
+    } else {
+      setErrorMail(true);
+      dispatch(setMainFormData(name, surName, patronymic, email, tel, dateValue));
+    }
   }
+
+  /*//////////////////Date input///////////////////*/
+
+
+  const [currentDate, setCurrentDate] = useState();
+
+  useEffect(() => {
+    let d = new Date();
+    let day = d.getDate();
+    let month = d.getMonth() + 1;
+    let year = d.getFullYear();
+    // eslint-disable-next-line
+    setCurrentDate(year + "-" + `${month > 9 ? month : "0" + month}` + "-" + `${day > 9 ? day : "0" + day}`)
+  });
+
+  /*///////////////////Mail validation//////////////////////*/
+
+  const mailValidation = /^.+@.+\..+$/igm;
+  const [errorMail, setErrorMail] = useState(false);
+
+  /*const onInputMail = (e) => {
+    if (mailValidation.test(e.target.value)) {
+      setEmail(e.target.value);
+      setErrorMail(false);
+    } else {
+      setErrorMail(true);
+    }
+  }*/
+
 
   return (
   <section className="formMain">
@@ -157,11 +202,12 @@ const FormMain = () => {
 
       <div className="formMain__form-inner">
         <input defaultValue={dataPatronymic} onChange={(e) => setPatronymic(e.target.value)} className="formMain__form-input" type="patronymic" placeholder="Отчество*" required></input>
-        <input defaultValue={dataDataValue} onChange={(e) => setDateValue(e.target.value)} className={dateValue ? "formMain__form-input" :"formMain__form-input formMain__form-input-date"} type="date" placeholder={dateValue ? "" : "Дата рождения*"} required></input>
+        <input max={currentDate} min="1900-01-01" defaultValue={dataDataValue} onChange={(e) => setDateValue(e.target.value)} className={dateValue ? "formMain__form-input" :"formMain__form-input formMain__form-input-date"} type="date" placeholder={dateValue ? "" : "Дата рождения*  "} required></input>
       </div>
 
       <div className="formMain__form-inner">
-        <input defaultValue={dataEmail} onChange={(e) => setEmail(e.target.value)} className="formMain__form-input" type="email" placeholder="Email" required></input>
+        {errorMail ? <span className="formMain__error-span">Enter correct email</span> : ""}
+        <input defaultValue={dataEmail} onChange={(e) => setEmail(e.target.value)} className="formMain__form-input" type="email" placeholder="Email*" required></input>
         <input defaultValue={dataTel} onChange={(e) => setTel(e.target.value)} className="formMain__form-input" type="tel" placeholder="Телефон*" required></input>
       </div>
 
@@ -171,7 +217,7 @@ const FormMain = () => {
           характера, а также с <Link to="/" className="formMain__checkbox-link">публичной офертой и документами.</Link></label>
       </div>
 
-      <button onClick={() => onClickNextButton()} disabled={disableButton} className={disableButton ? "formMain__button disable-button" : "formMain__button"} to="/register2">Продолжить</button>
+      <button onClick={(e) => onClickNextButton(e)} disabled={disableButton} className={disableButton ? "formMain__button disable-button" : "formMain__button"} to="/register2">Продолжить</button>
 
     </form>
 

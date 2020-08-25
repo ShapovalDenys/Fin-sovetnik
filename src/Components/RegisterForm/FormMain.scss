@@ -14,6 +14,12 @@
     font-weight: bold;
     color: #ffa20e;
   }
+  &__error-span {
+    color: red;
+    font-size: 16px;
+    position: absolute;
+    top: -15px;
+  }
   &__form {
     margin-top: 100px;
     width: 100%;
@@ -21,6 +27,7 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
+      position: relative;
     }
     &-input {
       width: 45%;
@@ -128,11 +135,10 @@
 input[type="date"]:before {
   color: #b0b0b0;
   content: attr(placeholder) !important;
-  margin-right: 0.5em;
 }
 
 input[type="date"]:focus:before {
-  content: '' !important;
+  content: "" !important;
 }
 
 /*

@@ -42,7 +42,7 @@ const Pay = () => {
     <div className="pay__cards card">
 
       <div  className="card__inner-front">
-        <input type="text" onChange={(e) => setCardNumber(e.target.value)} className="card__inner-front-input-number" placeholder="Номер карты" minLength={12} maxLength={12} required></input>
+        <input type="text" onChange={(e) => setCardNumber(e.target.value)} className="card__inner-front-input-number" placeholder="Номер карты" minLength={12} maxLength={16} required></input>
         <input type="text" onChange={(e) => setDateMonth(e.target.value)} className="card__inner-front-input-month" placeholder="ММ" minlength={2} maxLength={2} required></input>
         <input type="text" onChange={(e) => setDateYear(e.target.value)} className="card__inner-front-input-year" placeholder="ГГ" minlength={2} maxLength={2} required></input>
       </div>
