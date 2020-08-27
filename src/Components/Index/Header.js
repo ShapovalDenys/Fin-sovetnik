@@ -33,7 +33,7 @@ JSON.parse(localStorage.getItem('MoneyValue'))
     </div>
     <div className="header__wrap">
 
-      <div className="money__block">
+      <div id="money" className="money__block">
         <div className="money__block-inner">
           <img className="money__block-img" src="./img/idea-img.png" alt="idea"></img>
           <h4 className="money__block-article">Какую сумму вы хотите получить?</h4>

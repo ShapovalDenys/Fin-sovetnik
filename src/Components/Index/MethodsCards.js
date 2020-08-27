@@ -25,7 +25,7 @@ const MethodsCards = () => (
 
     </div>
 
-    <Link className="money__block-button" to="/register">Получить деньги</Link>
+    <a className="money__block-button" href="#money">Получить деньги</a>
 
   </section>
 );
