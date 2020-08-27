@@ -52,7 +52,7 @@ const Counter = () => {
       :
       <div className="counter__wrap-inner">
         <button type="button" onClick={onClickEdit} className={onEdit ? "counter__wrap-inner-button counter__wrap-inner-button-active" : "counter__wrap-inner-button"}>{onEdit ? "Принять изменения" : "Редактировать сумму"}</button>
-        <span className="counter__wrap-inner-summ">Сумма: {onEdit ? <input maxLength={6} autoFocus onChange={(e) => setInputValue((e.target.value > 100000 && 100000) || (e.target.value < 1000 && 1000) || e.target.value)} onKeyDown={(e) => onChangeSumm(e)} defaultValue={moneyValue} className="counter__wrap-inner-input"></input> : `${moneyValue}`} р</span>
+        <span className="counter__wrap-inner-summ">Сумма: {onEdit ? <input maxLength={6} autoFocus onChange={(e) => setInputValue((e.target.value > 100000 && 100000) || (e.target.value < 1000 && 1000) || e.target.value)} onKeyDown={(e) => onChangeSumm(e)} defaultValue={moneyValue} className="counter__wrap-inner-input"></input> : `${moneyValue}`} грн</span>
       </div>
       }
 

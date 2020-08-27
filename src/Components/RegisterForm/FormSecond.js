@@ -16,6 +16,7 @@ import {
   getSecondFormCity,
   getSecondFormBuild,
   getSecondFormFlat,
+  getSecondFormInn,
   getMainFormDataName,
   getMainFormDataSurName,
   getMainFormDataPatronymic,
@@ -42,6 +43,7 @@ const FormSecond = () => {
     const dataCity = useSelector(getSecondFormCity);
     const dataBuild= useSelector(getSecondFormBuild);
     const dataFlat = useSelector(getSecondFormFlat);
+    const dataInn = useSelector(getSecondFormInn);
     const dataName = useSelector(getMainFormDataName);
     const dataSurName = useSelector(getMainFormDataSurName);
     const dataPatronymic = useSelector(getMainFormDataPatronymic);
@@ -54,6 +56,8 @@ const FormSecond = () => {
   const [passportDate, setPassportDate] = useState(dataPassportDate);
   const [passportPlaceOrgan, setPassportPlaceOrgan] = useState(dataPassportPlaceOrgan);
   const [passportPlace, setPassportPlace] = useState(dataPassportPlace);
+
+  const [inn, setInn] = useState(dataInn);
 
   const [region, setRegion] = useState(dataFormRegion);
   const [street, setStreet] = useState(dataStreet);
@@ -82,6 +86,8 @@ const FormSecond = () => {
   const [passportPlaceOrganRange, setPassportPlaceOrganRange] = useState(0);
   const [passportPlaceRange, setPassportPlaceRange] = useState(0);
 
+  const [innRange, setInnRange] = useState(0);
+
   const [regionRange, setRegionRange] = useState("");
   const [streetRange, setStreetRange] = useState("");
   const [bodyRange, setBodyRange] = useState("");
@@ -92,15 +98,23 @@ const FormSecond = () => {
 
   useEffect(() => {
     if (passport) {
-      setPassportRange(7)
+      setPassportRange(5)
     } else {
       setPassportRange(0)
     }
   }, [passport])
 
   useEffect(() => {
+    if (inn) {
+      setInnRange(6)
+    } else {
+      setInnRange(0)
+    }
+  }, [inn])
+
+  useEffect(() => {
     if (passportDate) {
-      setPassportDateRange(7)
+      setPassportDateRange(5)
     } else {
       setPassportDateRange(0)
     }
@@ -108,7 +122,7 @@ const FormSecond = () => {
 
   useEffect(() => {
     if (passportPlaceOrgan) {
-      setPassportPlaceOrganRange(7)
+      setPassportPlaceOrganRange(5)
     } else {
       setPassportPlaceOrganRange(0)
     }
@@ -172,8 +186,8 @@ const FormSecond = () => {
 
 
   useEffect(() => {
-    setRangeValueSecondForm(passportRange + passportDateRange + passportPlaceOrganRange + passportPlaceRange + regionRange + streetRange + bodyRange + cityRange + buildRange + flatRange)
-  }, [passportRange, passportDateRange, passportPlaceOrganRange, passportPlaceRange, regionRange, streetRange, bodyRange, cityRange, buildRange, flatRange])
+    setRangeValueSecondForm(passportRange + passportDateRange + passportPlaceOrganRange + passportPlaceRange + regionRange + streetRange + bodyRange + cityRange + buildRange + flatRange + innRange)
+  }, [passportRange, passportDateRange, passportPlaceOrganRange, passportPlaceRange, regionRange, streetRange, bodyRange, cityRange, buildRange, flatRange, innRange])
 
 
   const dispatch = useDispatch();
@@ -185,8 +199,8 @@ const FormSecond = () => {
   /*//////////////////////////////////////*/
 
   useEffect(() => {
-    dispatch(setSecondFormData(passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, city, flat))
-  }, [passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, city, flat])
+    dispatch(setSecondFormData(passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, city, flat, inn))
+  }, [passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, city, flat, inn])
 
 
   const history = useHistory();
@@ -209,7 +223,9 @@ const FormSecond = () => {
       dataCity: dataCity,
       dataBuild: dataBuild,
       dataFlat: dataFlat,
+      dataInn: dataInn,
     })
+    localStorage.setItem('Data', DATA);
     axios.post('/register.php', DATA)
     .then(function (response) {
       console.log(response.json())
@@ -221,7 +237,7 @@ const FormSecond = () => {
     history.push("/pay");
   }
 
-
+  /*console.log(JSON.parse(localStorage.getItem('Data')));*/
   /*/////////////////////////////////////////*/
   const [currentDate, setCurrentDate] = useState();
 
@@ -256,7 +272,7 @@ const FormSecond = () => {
       </div>
 
       <input type="text" defaultValue={passportPlace} onChange={(e) => setPassportPlace(e.target.value)}  placeholder="Кем выдан*" className="formSecond__form-pasportData-input formSecond__form-pasportData-input-pass" required></input>
-
+      <input type="number" defaultValue={inn} onChange={(e) => setInn(e.target.value)} placeholder="ИНН*" className="formSecond__form-pasportData-input formSecond__form-pasportData-input-pass" required></input>
     </form>
 
     <span className="formMain__article formSecond__article">Адрес регистрации</span>

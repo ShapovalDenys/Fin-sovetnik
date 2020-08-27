@@ -102,7 +102,7 @@ JSON.parse(localStorage.getItem('MoneyValue'))
             <span>1000</span>
             <span>100 000</span>
           </div>
-          <span className="money__block-sum">{rangeValue} руб</span>
+          <span className="money__block-sum">{rangeValue} грн</span>
           <div className="money__block-percent-block">
             <span>Проценты: <span className="money__block-percent-block-span">{rangeValue * 0.325}</span></span>
             <span>Возвращаете: {rangeValue}</span>

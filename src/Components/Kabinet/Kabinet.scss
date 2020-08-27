@@ -46,24 +46,39 @@
   position: relative;
   padding: 120px 100px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   &__card {
     box-sizing: border-box;
     padding: 40px 15px;
-    width: 30%;
+    width: 500px;
     border: 1px solid #dbdbdb;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 25px;
+    &-inner {
+      display: flex;
+      justify-content: center;
+      height: 23%;
+    }
+    & img {
+      width: 300px;
+      height: 80px;
+    }
     &-text {
-      font-size: 25px;
+      margin-top: 15px;
+      font-size: 18px;
       color: #afafaf;
-      line-height: 80px;
+      line-height: 50px;
       border-bottom: 1px solid #dbdbdb;
+      height: 380px;
+      width: 90%;
     }
     &-summ {
-      font-size: 25px;
+      font-size: 20px;
       font-weight: bold;
       color: #afafaf;
       &-money {
@@ -146,21 +161,57 @@
   }
 }
 
-@media screen and (max-width: 1214px) {
+@media screen and (max-width: 1220px) {
   .service {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .service {
+    padding: 40px 0;
     &__card {
-      & img {
-        width: 150px;
-      }
-      &-summ,
+      width: 400px;
       &-text {
-        font-size: 18px;
+        line-height: 40px;
+      }
+      & img {
+        width: 200px;
+        height: 50px;
       }
     }
   }
 }
 
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 450px) {
+  .service {
+    padding: 40px 10px;
+    &__card {
+      width: 300px;
+      &-text {
+        line-height: 40px;
+        font-size: 15px;
+        height: 440px;
+      }
+    }
+  }
+}
+/*
+@media screen and (max-width: 1214px) {
+  .service {
+    &__card {
+      & img {
+        width: 140px;
+      }
+      &-summ,
+      &-text {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1108px) {
   .service {
     padding: 40px;
     margin-bottom: -140px;
@@ -180,7 +231,7 @@
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 950px) {
   .service {
     flex-direction: column;
     align-items: center;
@@ -207,10 +258,11 @@
     }
   }
 }
-
+*/
 @media screen and (max-width: 600px) {
   .service,
   .kabinet {
     border-radius: 50px;
   }
 }
+
