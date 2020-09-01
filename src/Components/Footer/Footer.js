@@ -10,24 +10,21 @@ const Footer = () => (
       <div className="footer__inner-left">
         <Link to="/index"><img src="./img/logo.png" alt="logo"></img></Link>
         <p>
-          8 (9963) 22-37-16<br></br>
-          support@moneydar.ru<br></br>
-          Почтовый адрес: г.Тюмень,<br></br>
-          56, 625000, а/я № 911
+          +38 (050) 22-37-16<br></br>
+          support@fin-sovet.com<br></br>
+          Почтовый адрес: г. Киев,<br></br>
+          ул. Олександра Мишуги, 56
         </p>
       </div>
 
       <div className="footer__inner-center">
         <img src="./img/mastersaim.png" alt="mastersaim"></img>
-        <img src="./img/mirsaim.png" alt="mirsaim"></img>
-        <img src="./img/unitisaim.png" alt="unitisaim"></img>
         <img src="./img/visasaim.png" alt="visasaim"></img>
       </div>
 
       <div  className="footer__inner-right">
-        <a href="https://www.google.com">ссылка</a>
-        <a href="https://www.google.com">ссылка</a>
-        <a href="https://www.google.com">ссылка</a>
+        <Link to="/Oferta.pdf">Публичная Оферта</Link>
+        <Link to="/GDPR.pdf">Политика GDPR</Link>
       </div>
 
     </div>

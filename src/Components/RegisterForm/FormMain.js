@@ -213,8 +213,8 @@ const FormMain = () => {
 
       <div className="formMain__checkbox">
         <input onChange={() => setCheck(!check)} className="formMain__checkbox-input" id="check" type="checkbox" ></input>
-        <label className="formMain__checkbox-label" htmlFor="check">Даю согласие на <Link to="/" className="formMain__checkbox-link">обработку персональных</Link> данных и получение материалов рекламного
-          характера, а также с <Link to="/" className="formMain__checkbox-link">публичной офертой и документами.</Link></label>
+        <label className="formMain__checkbox-label" htmlFor="check">Даю согласие на <Link to="/Oferta.pdf" className="formMain__checkbox-link">обработку персональных</Link> данных и получение материалов рекламного
+          характера, а также с <Link to="/GDPR.pdf" className="formMain__checkbox-link">публичной офертой и документами.</Link></label>
       </div>
 
       <button onClick={(e) => onClickNextButton(e)} disabled={disableButton} className={disableButton ? "formMain__button disable-button" : "formMain__button"} to="/register2">Продолжить</button>

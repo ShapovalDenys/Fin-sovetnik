@@ -16,10 +16,6 @@ const Methods = () => (
       </div>
 
       <div className="methods__image">
-        <img src="./img/mir.png" alt="mir"></img>
-      </div>
-
-      <div className="methods__image">
         <img src="./img/yan.png" alt="yan"></img>
       </div>
 
