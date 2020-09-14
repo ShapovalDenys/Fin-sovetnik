@@ -23,8 +23,8 @@ const Footer = () => (
       </div>
 
       <div  className="footer__inner-right">
-        <Link to="/Oferta.pdf">Публичная Оферта</Link>
-        <Link to="/GDPR.pdf">Политика GDPR</Link>
+        <a href="/Oferta.pdf">Публичная Оферта</a>
+        <a href="/GDPR.pdf">Политика конфиденциальности</a>
       </div>
 
     </div>

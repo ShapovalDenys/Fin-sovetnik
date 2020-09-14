@@ -209,3 +209,20 @@ input[type="date"]:before {
     border-radius: 50px;
   }
 }
+
+.DayPickerInput {
+  width: 45%;
+  border: none;
+  font-weight: 500;
+  padding: 20px 0;
+  border-bottom: 2px solid #dbdbdb;
+  margin-bottom: 80px;
+  font-size: 34px;
+  background-color: white;
+  & ::placeholder {
+    color: #b0b0b0;
+  }
+  & input {
+    border: none;
+  }
+}

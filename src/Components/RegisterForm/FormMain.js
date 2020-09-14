@@ -17,6 +17,50 @@ import { useHistory } from 'react-router-dom';
 
 import './FormMain.scss';
 
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
+import YearMonthForm from './YearMonthForm';
+
+const WEEKDAYS_SHORT = {
+  ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+};
+const MONTHS = {
+  ru: [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
+  ],
+};
+
+const WEEKDAYS_LONG = {
+  ru: [
+    'Воскресенье',
+    'Понедельник',
+    'Вторник',
+    'Среда',
+    'Четверг',
+    'Пятница',
+    'Суббота',
+  ],
+};
+
+const FIRST_DAY_OF_WEEK = {
+  ru: 1,
+};
+// Translate aria-labels
+const LABELS = {
+  ru: { nextMonth: 'следующий месяц', previousMonth: 'предыдущий месяц' },
+};
+
 const FormMain = () => {
 
   const [disableButton, setDisableButton] = useState(true);
@@ -180,6 +224,38 @@ const FormMain = () => {
     }
   }*/
 
+  /**/
+  const regex = /[а-яА-Я-ІіЄє-]+/g;
+
+  const setNameValue = (value) => {
+    const found = value.match(regex);
+    if (found) {
+      setName(found.join(""))
+    }
+    else {
+      setName("")
+    }
+  }
+
+  const setSurNameValue = (value) => {
+    const found = value.match(regex);
+    if (found) {
+      setSurName(found.join(""))
+    }
+    else {
+      setSurName("")
+    }
+  }
+
+  const setPatronymicValue = (value) => {
+    const found = value.match(regex);
+    if (found) {
+      setPatronymic(found.join(""))
+    }
+    else {
+      setPatronymic("")
+    }
+  }
 
   return (
   <section className="formMain">
@@ -196,13 +272,26 @@ const FormMain = () => {
     <form className="formMain__form">
 
       <div className="formMain__form-inner">
-        <input defaultValue={dataSurName} onChange={(e) => setSurName(e.target.value)} className="formMain__form-input" type="surname" placeholder="Фамилия*" required></input>
-        <input defaultValue={dataName} onChange={(e) => setName(e.target.value)} className="formMain__form-input" type="name" placeholder="Имя*" required></input>
+        <input value={surName} onChange={(e) => setSurNameValue(e.target.value)} className="formMain__form-input" type="surname" placeholder="Фамилия*" required></input>
+        <input value={name} onChange={(e) => setNameValue(e.target.value)} className="formMain__form-input" type="name" placeholder="Имя*" required></input>
       </div>
 
       <div className="formMain__form-inner">
-        <input defaultValue={dataPatronymic} onChange={(e) => setPatronymic(e.target.value)} className="formMain__form-input" type="patronymic" placeholder="Отчество*" required></input>
-        <input max={currentDate} min="1900-01-01" defaultValue={dataDataValue} onChange={(e) => setDateValue(e.target.value)} className={dateValue ? "formMain__form-input" :"formMain__form-input formMain__form-input-date"} type="date" placeholder={dateValue ? "" : "Дата рождения*  "} required></input>
+        <input value={patronymic} onChange={(e) => setPatronymicValue(e.target.value)} className="formMain__form-input" type="patronymic" placeholder="Отчество*" required></input>
+        {/*<input max={currentDate} min="1900-01-01" defaultValue={dataDataValue} onChange={(e) => setDateValue(e.target.value)} className={dateValue ? "formMain__form-input" :"formMain__form-input formMain__form-input-date"} type="date" placeholder={dateValue ? "" : "Дата рождения*  "} required></input>*/}
+        <DayPickerInput dayPickerProps={{
+          locale: "ru",
+          months: MONTHS["ru"],
+          weekdaysLong: WEEKDAYS_LONG["ru"],
+          weekdaysShort: WEEKDAYS_SHORT["ru"],
+          firstDayOfWeek: FIRST_DAY_OF_WEEK["ru"],
+          labels: LABELS["ru"],
+          month: new Date(2002, 8),
+          fromMonth: new Date(1900, 1),
+          toMonth: new Date(2002, 8),
+          }}
+          placeholder={"Дата рождения*"}
+          onDayChange={day => setDateValue(day)} />
       </div>
 
       <div className="formMain__form-inner">
