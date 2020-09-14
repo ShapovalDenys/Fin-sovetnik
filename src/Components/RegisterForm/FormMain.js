@@ -17,49 +17,7 @@ import { useHistory } from 'react-router-dom';
 
 import './FormMain.scss';
 
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
-import YearMonthForm from './YearMonthForm';
-
-const WEEKDAYS_SHORT = {
-  ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-};
-const MONTHS = {
-  ru: [
-    'Январь',
-    'Февраль',
-    'Март',
-    'Апрель',
-    'Май',
-    'Июнь',
-    'Июль',
-    'Август',
-    'Сентябрь',
-    'Октябрь',
-    'Ноябрь',
-    'Декабрь',
-  ],
-};
-
-const WEEKDAYS_LONG = {
-  ru: [
-    'Воскресенье',
-    'Понедельник',
-    'Вторник',
-    'Среда',
-    'Четверг',
-    'Пятница',
-    'Суббота',
-  ],
-};
-
-const FIRST_DAY_OF_WEEK = {
-  ru: 1,
-};
-// Translate aria-labels
-const LABELS = {
-  ru: { nextMonth: 'следующий месяц', previousMonth: 'предыдущий месяц' },
-};
+import DatePicker from 'react-date-picker';
 
 const FormMain = () => {
 
@@ -257,6 +215,22 @@ const FormMain = () => {
     }
   }
 
+  let date = new Date();
+  let intYear = date.getFullYear() - 18;
+  let months = date.getMonth();
+  let day = date.
+  console.log(new Date(intYear, months));
+
+
+  const currentYear = new Date().getFullYear();
+  const [timeValue, onChangeTimeValue] = useState(dataDataValue);
+
+  const onChangeTimeValueSet = (e) => {
+    onChangeTimeValue(e);
+    setDateValue(e)
+  }
+
+
   return (
   <section className="formMain">
     <span className="formMain__article">{rangeValue + rangeValueSecondForm}% вероятность одобрения Вашей заявки</span>
@@ -279,19 +253,16 @@ const FormMain = () => {
       <div className="formMain__form-inner">
         <input value={patronymic} onChange={(e) => setPatronymicValue(e.target.value)} className="formMain__form-input" type="patronymic" placeholder="Отчество*" required></input>
         {/*<input max={currentDate} min="1900-01-01" defaultValue={dataDataValue} onChange={(e) => setDateValue(e.target.value)} className={dateValue ? "formMain__form-input" :"formMain__form-input formMain__form-input-date"} type="date" placeholder={dateValue ? "" : "Дата рождения*  "} required></input>*/}
-        <DayPickerInput dayPickerProps={{
-          locale: "ru",
-          months: MONTHS["ru"],
-          weekdaysLong: WEEKDAYS_LONG["ru"],
-          weekdaysShort: WEEKDAYS_SHORT["ru"],
-          firstDayOfWeek: FIRST_DAY_OF_WEEK["ru"],
-          labels: LABELS["ru"],
-          month: new Date(2002, 8),
-          fromMonth: new Date(1900, 1),
-          toMonth: new Date(2002, 8),
-          }}
-          placeholder={"Дата рождения*"}
-          onDayChange={day => setDateValue(day)} />
+          <DatePicker
+            className="calendar"
+            onChange={onChangeTimeValueSet}
+            value={timeValue}
+            minDate={new Date(1900, 1)}
+            maxDate={new Date(currentYear - 18, 1)}
+            yearPlaceholder="гггг"
+            monthPlaceholder="мм"
+            dayPlaceholder="Дата рождения* дд"
+          />
       </div>
 
       <div className="formMain__form-inner">

@@ -17,6 +17,7 @@ import {
   getSecondFormBuild,
   getSecondFormFlat,
   getSecondFormInn,
+  getSecondFormCreditTerm,
   getMainFormDataName,
   getMainFormDataSurName,
   getMainFormDataPatronymic,
@@ -26,6 +27,7 @@ import {
   setPayAccess,
 } from '../Store/Index';
 import { useSelector, useDispatch } from 'react-redux';
+import DatePicker from 'react-date-picker';
 
 const FormSecond = () => {
   const rangeValue = useSelector(getRangeStatus);
@@ -44,6 +46,7 @@ const FormSecond = () => {
     const dataBuild= useSelector(getSecondFormBuild);
     const dataFlat = useSelector(getSecondFormFlat);
     const dataInn = useSelector(getSecondFormInn);
+    const dataCreditValue = useSelector(getSecondFormCreditTerm);
     const dataName = useSelector(getMainFormDataName);
     const dataSurName = useSelector(getMainFormDataSurName);
     const dataPatronymic = useSelector(getMainFormDataPatronymic);
@@ -58,6 +61,7 @@ const FormSecond = () => {
   const [passportPlace, setPassportPlace] = useState(dataPassportPlace);
 
   const [inn, setInn] = useState(dataInn);
+  const [creditValue, setCreditValue] = useState(dataCreditValue);
 
   const [region, setRegion] = useState(dataFormRegion);
   const [street, setStreet] = useState(dataStreet);
@@ -199,8 +203,8 @@ const FormSecond = () => {
   /*//////////////////////////////////////*/
 
   useEffect(() => {
-    dispatch(setSecondFormData(passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, city, flat, inn))
-  }, [passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, city, flat, inn])
+    dispatch(setSecondFormData(passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, city, flat, inn, creditValue))
+  }, [passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, city, flat, inn, creditValue])
 
 
   const history = useHistory();
@@ -224,6 +228,7 @@ const FormSecond = () => {
       dataBuild: dataBuild,
       dataFlat: dataFlat,
       dataInn: dataInn,
+      dataCredit: dataCreditValue,
     })
     localStorage.setItem('Data', DATA);
     axios.post('/register.php', DATA)
@@ -250,6 +255,22 @@ const FormSecond = () => {
     setCurrentDate(year + "-" + `${month > 9 ? month : "0" + month}` + "-" + `${day > 9 ? day : "0" + day}`)
   });
 
+
+
+  const currentYear = new Date().getFullYear();
+  const [timeValue, onChangeTimeValue] = useState("");
+
+  const onChangeTimeValueSet = (e) => {
+    onChangeTimeValue(e);
+    setPassportDate(e)
+  }
+/*///////////////////////*/
+
+  const onChangeSelect = (value) => {
+    setCreditValue(value)
+  }
+
+/*///////////////////////*/
   return (
   <section className="formSecond">
     <span className="formMain__article">{rangeValueSecondForm + rangeValue}% вероятность одобрения Вашей заявки</span>
@@ -266,13 +287,30 @@ const FormSecond = () => {
 
       <div className="formSecond__form-pasportData">
         <input type="text" defaultValue={passport} onChange={(e) => setPassport(e.target.value)} placeholder="Серия и номер паспорта*" className="formSecond__form-pasportData-input" required></input>
-        <input max={currentDate} min="1900-01-01" defaultValue={passportDate} onChange={(e) => setPassportDate(e.target.value)} type="date" placeholder={passportDate ? "" : "Дата выдачи*"} className={passportDate ? "formSecond__form-pasportData-input" : "formSecond__form-pasportData-input formMain__form-input-date"} required></input>
+        <DatePicker
+            className="calendar-passport"
+            onChange={onChangeTimeValueSet}
+            value={timeValue}
+            minDate={new Date(1900, 1)}
+            maxDate={new Date(currentYear - 14, 1)}
+            yearPlaceholder="гггг"
+            monthPlaceholder="мм"
+            dayPlaceholder="Дата выдачи* дд"
+          />
+        {/*<input max={currentDate} min="1900-01-01" defaultValue={passportDate} onChange={(e) => setPassportDate(e.target.value)} type="date" placeholder={passportDate ? "" : "Дата выдачи*"} className={passportDate ? "formSecond__form-pasportData-input" : "formSecond__form-pasportData-input formMain__form-input-date"} required></input>*/}
         {/*<input defaultValue={passportDate} onChange={(e) => setPassportDate(e.target.value)} placeholder="Дата выдачи*" className="formSecond__form-pasportData-input" required></input>*/}
         <input type="text" defaultValue={passportPlaceOrgan} onChange={(e) => setPassportPlaceOrgan(e.target.value)} placeholder="Код органа, выдающего документ*" className="formSecond__form-pasportData-input" required></input>
       </div>
 
       <input type="text" defaultValue={passportPlace} onChange={(e) => setPassportPlace(e.target.value)}  placeholder="Кем выдан*" className="formSecond__form-pasportData-input formSecond__form-pasportData-input-pass" required></input>
       <input type="number" defaultValue={inn} onChange={(e) => setInn(e.target.value)} placeholder="ИНН*" className="formSecond__form-pasportData-input formSecond__form-pasportData-input-pass" required></input>
+      <label htmlFor="select">Выберите срок кредитования
+      <select onChange={(e) => onChangeSelect(e.target.value)} id="select" value={creditValue} className="select-form formSecond__form-pasportData-input formSecond__form-pasportData-input-pass">
+        <option value="3 месяца">3 месяца</option>
+        <option value="6 месяцев">6 месяцев</option>
+        <option value="9 месяцев">9 месяцев</option>
+        <option value="12 месяцев">12 месяцев</option>
+      </select></label>
     </form>
 
     <span className="formMain__article formSecond__article">Адрес регистрации</span>
@@ -282,7 +320,7 @@ const FormSecond = () => {
       <div className="formSecond__form-adress-inner">
         <input type="text" defaultValue={region} onChange={(e) => setRegion(e.target.value)} placeholder="Регион*" className="formSecond__form-adress-inner-input" required></input>
         <input type="text" defaultValue={street} onChange={(e) => setStreet(e.target.value)} placeholder="Улица*" className="formSecond__form-adress-inner-input" required></input>
-        <input type="text" defaultValue={body} onChange={(e) => setBody(e.target.value)} placeholder="Строение/Корпус*" className="formSecond__form-adress-inner-input" required></input>
+        <input type="text" defaultValue={body} onChange={(e) => setBody(e.target.value)} placeholder="Строение/Корпус" className="formSecond__form-adress-inner-input"></input>
       </div>
 
       <div className="formSecond__form-adress-inner">
@@ -305,7 +343,7 @@ const FormSecond = () => {
       <div className="formSecond__form-adress-inner">
         <input type="text" value={!checkAdress ? region : secondRegion} onChange={(e) => setSecondRegion(e.target.value)} placeholder="Регион*" className={checkAdress ? "formSecond__form-adress-inner-input" : "formSecond__form-adress-inner-input formSecond__form-adress-inner-input  formSecond__form-adress-inner-input-disable"} required></input>
         <input type="text" value={!checkAdress ? street : secondStreet} onChange={(e) => setSecondStreet(e.target.value)} placeholder="Улица*" className={checkAdress ? "formSecond__form-adress-inner-input" : "formSecond__form-adress-inner-input formSecond__form-adress-inner-input  formSecond__form-adress-inner-input-disable"} required></input>
-        <input type="text" value={!checkAdress ? body : secondBody} onChange={(e) => setSecondBody(e.target.value)} placeholder="Строение/Корпус*" className={checkAdress ? "formSecond__form-adress-inner-input" : "formSecond__form-adress-inner-input formSecond__form-adress-inner-input  formSecond__form-adress-inner-input-disable"} required></input>
+        <input type="text" value={!checkAdress ? body : secondBody} onChange={(e) => setSecondBody(e.target.value)} placeholder="Строение/Корпус" className={checkAdress ? "formSecond__form-adress-inner-input" : "formSecond__form-adress-inner-input formSecond__form-adress-inner-input  formSecond__form-adress-inner-input-disable"}></input>
       </div>
 
       <div className="formSecond__form-adress-inner">
@@ -316,7 +354,7 @@ const FormSecond = () => {
 
     </form>
 
-    <button disabled={rangeValueSecondForm === 58 ? false : true} onClick={() => onSubmit()} className={rangeValueSecondForm === 58 ? "formMain__button" : "formMain__button  disable-button"}>Продолжить</button>
+    <button disabled={(rangeValueSecondForm === 58 || (rangeValueSecondForm === 53 && body === "")) ? false : true} onClick={() => onSubmit()} className={(rangeValueSecondForm === 58 || (rangeValueSecondForm === 53 && body === "")) ? "formMain__button" : "formMain__button  disable-button"}>Продолжить</button>
 
   </section>
   );

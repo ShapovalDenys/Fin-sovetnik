@@ -44,6 +44,7 @@ export const setSecondFormData= (
   build = "",
   flat = "",
   inn = "",
+  creditTerm = "",
   ) => ({
       type: SECOND_FORM_DATA,
       passport,
@@ -57,6 +58,7 @@ export const setSecondFormData= (
       build,
       flat,
       inn,
+      creditTerm,
     });
 
 // Selectors - a function receiving Redux state and returning some data from it
@@ -85,6 +87,7 @@ export const getSecondFormCity = (state) => state.city;
 export const getSecondFormBuild = (state) => state.build;
 export const getSecondFormFlat = (state) => state.flat;
 export const getSecondFormInn = (state) => state.inn;
+export const getSecondFormCreditTerm = (state) => state.creditTerm;
 
 // Initial state
 
@@ -111,6 +114,7 @@ const initialState = {
   build: "",
   flat: "",
   inn: "",
+  creditTerm: "6 месяцев",
 };
 
 // rootReducer - this function is called after dispatching an action
@@ -154,6 +158,7 @@ const rootReducer = (state = initialState, action) => {
         build: action.build,
         flat: action.flat,
         inn: action.inn,
+        creditTerm: action.creditTerm,
         };
 
     case RANGE_STATUS:

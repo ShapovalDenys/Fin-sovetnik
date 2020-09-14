@@ -33,13 +33,15 @@ const Pay = () => {
 
   return (
   <form className="pay" onSubmit={(e) => onSubmitPay(e)}>
-
     <span className="formMain__article pay__article">Активация сервиса</span>
 
     <p className="pay__main-text">Для продолжения оформления заявки вам необходимо пройти активацию сервиса.</p>
-    <p className="pay__second-text">Укажите реквизиты вашей карты:</p>
 
-    <div className="pay__cards card">
+    <iframe src="https://api.fondy.eu/api/checkout/?design_id=61186&merchant_id=1455387&signature=35006d9bf9ebf8e25c7edf467b97705f6b4348d8" width="100%" height="820px" frameBorder="none"></iframe>
+
+    {/*<p className="pay__second-text">Укажите реквизиты вашей карты:</p>*/}
+
+    {/*<div className="pay__cards card">
 
       <div  className="card__inner-front">
         <input type="text" onChange={(e) => setCardNumber(e.target.value)} className="card__inner-front-input-number" placeholder="Номер карты" minLength={12} maxLength={16} required></input>
@@ -53,12 +55,12 @@ const Pay = () => {
         <input type="text" onChange={(e) => setCVV(e.target.value)} className="card__inner-back-input" placeholder="XXX" minlength={3} maxLength={3} required></input>
       </div>
 
-    </div>
+    </div>*/}
 
-    <button className="pay__button">Оплатить</button>
+    {/*<button className="pay__button">Оплатить</button>*/}
     <Link to="/" className="pay__button-reject">Отменить оплату</Link>
 
-    <img className="pay__payments" src="./img/payments.png" alt="payments"></img>
+    {/*<img className="pay__payments" src="./img/payments.png" alt="payments"></img>*/}
 
     <p className="pay__disclaimer">
       В системе безопасность платежей и конфиденциальность

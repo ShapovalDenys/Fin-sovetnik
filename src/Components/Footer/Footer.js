@@ -22,7 +22,7 @@ const Footer = () => (
         <img src="./img/visasaim.png" alt="visasaim"></img>
       </div>
 
-      <div  className="footer__inner-right">
+      <div className="footer__inner-right">
         <a href="/Oferta.pdf">Публичная Оферта</a>
         <a href="/GDPR.pdf">Политика конфиденциальности</a>
       </div>
