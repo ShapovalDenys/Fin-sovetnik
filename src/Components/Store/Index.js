@@ -91,6 +91,35 @@ export const getSecondFormCreditTerm = (state) => state.creditTerm;
 
 // Initial state
 
+  let date = new Date();
+  date.setFullYear(date.getFullYear()-18, date.getMonth());
+/*
+const initialState = {
+  moneyValue: JSON.parse(localStorage.getItem('MoneyValue')) || 30000,
+  passportAccess: false,
+  payAccess: false,
+  name: JSON.parse(localStorage.getItem('Data')).dataName || "",
+  surName: JSON.parse(localStorage.getItem('Data')).dataSurName || "",
+  patronymic: JSON.parse(localStorage.getItem('Data')).dataPatronymic || "",
+  email: JSON.parse(localStorage.getItem('Data')).dataEmail || "",
+  tel: JSON.parse(localStorage.getItem('Data')).dataTel || "",
+  dateValue: date,
+  rangeStatus: 0,
+  rangeStatusSecond: 0,
+  passport: JSON.parse(localStorage.getItem('Data')).dataPassport || "",
+  passportDate: "",
+  passportPlaceOrgan: JSON.parse(localStorage.getItem('Data')).dataPassportPlaceOrgan || "",
+  passportPlace: JSON.parse(localStorage.getItem('Data')).dataPassportPlace || "",
+  region: JSON.parse(localStorage.getItem('Data')).dataFormRegion || "",
+  street: JSON.parse(localStorage.getItem('Data')).dataStreet || "",
+  body: JSON.parse(localStorage.getItem('Data')).dataBody || "",
+  city: JSON.parse(localStorage.getItem('Data')).dataCity || "",
+  build: JSON.parse(localStorage.getItem('Data')).dataBuild || "",
+  flat: JSON.parse(localStorage.getItem('Data')).dataFlat || "",
+  inn: JSON.parse(localStorage.getItem('Data')).dataInn || "",
+  creditTerm: "6 месяцев",
+};
+*/
 const initialState = {
   moneyValue: JSON.parse(localStorage.getItem('MoneyValue')) || 30000,
   passportAccess: false,
@@ -100,7 +129,7 @@ const initialState = {
   patronymic: "",
   email: "",
   tel: "",
-  dateValue: "",
+  dateValue: date,
   rangeStatus: 0,
   rangeStatusSecond: 0,
   passport: "",
@@ -114,8 +143,9 @@ const initialState = {
   build: "",
   flat: "",
   inn: "",
-  creditTerm: "6 месяцев",
-};
+  creditTerm: "6",
+}
+
 
 // rootReducer - this function is called after dispatching an action
 const rootReducer = (state = initialState, action) => {

@@ -102,6 +102,14 @@
         background-color: white;
       }
     }
+    &-link-disable {
+      background-color: gray;
+      border: none;
+      &:hover {
+        color: white;
+        background-color: gray;
+      }
+    }
   }
 }
 
@@ -266,3 +274,36 @@
   }
 }
 
+.popUp {
+  position: fixed;
+  left: calc(50% - 155px);
+  width: 310px;
+  height: 200px;
+  box-shadow: 0 3px 30px rgba(0,0,0,0.2);
+  background-color: white;
+  z-index: 20;
+  border-radius: 25px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid black;
+  & h3 {
+    font-size: 24px;
+  }
+  &__button {
+    margin-top: 20px;
+    width: 90%;
+    height: 54px;
+    border-radius: 20px;
+    color: white;
+    background-color: #0dd542;
+    text-align: center;
+    line-height: 54px;
+    font-size: 20px;
+    border: 1px solid #0dd542;
+    transition: 0.3s;
+    &:hover {
+      color: #0dd542;
+      background-color: white;
+    }
+  }
+}

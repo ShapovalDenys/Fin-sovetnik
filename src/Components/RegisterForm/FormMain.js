@@ -14,10 +14,11 @@ import {
   getRangeStatusSecond
 } from '../Store/Index';
 import { useHistory } from 'react-router-dom';
-
 import './FormMain.scss';
-
 import DatePicker from 'react-date-picker';
+
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 const FormMain = () => {
 
@@ -63,6 +64,12 @@ const FormMain = () => {
   const [email, setEmail] = useState(dataEmail);
   const [tel, setTel] = useState(dataTel);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [errorPhone, setErrorPhone] = useState(false);
+  const [errorPhoneSpan, setErrorPhoneSpan] = useState(false)
+
+
   useEffect(() => {
     if (name) {
       setNameRange(7)
@@ -88,7 +95,7 @@ const FormMain = () => {
   }, [patronymic])
 
   useEffect(() => {
-    if (dateValue) {
+    if (dateValue && isOpen) {
       setDateRange(7)
     } else {
       setDateRange(0)
@@ -144,13 +151,26 @@ const FormMain = () => {
 
   const onClickNextButton = (e) => {
     e.preventDefault();
-    if (mailValidation.test(email)) {
+    if (mailValidation.test(email) && errorPhone === false) {
       dispatch(setMainFormData(name, surName, patronymic, email, tel, dateValue));
       history.push("/register2");
       dispatch(setRangeStatus(rangeValue));
-    } else {
+    }
+    else if (!mailValidation.test(email) && !errorPhone) {
+      console.log("error mail");
       setErrorMail(true);
       dispatch(setMainFormData(name, surName, patronymic, email, tel, dateValue));
+    }
+    else if (errorPhone) {
+      console.log("error tel");
+      setErrorPhoneSpan(true);
+      dispatch(setMainFormData(name, surName, patronymic, email, tel, dateValue));
+    }
+    if (!errorPhone) {
+      setErrorPhoneSpan(false);
+    }
+    if (mailValidation.test(email)) {
+      setErrorMail(false);
     }
   }
 
@@ -216,20 +236,14 @@ const FormMain = () => {
   }
 
   let date = new Date();
-  let intYear = date.getFullYear() - 18;
-  let months = date.getMonth();
-  let day = date.
-  console.log(new Date(intYear, months));
+  date.setFullYear(date.getFullYear()-18, date.getMonth());
 
-
-  const currentYear = new Date().getFullYear();
   const [timeValue, onChangeTimeValue] = useState(dataDataValue);
 
   const onChangeTimeValueSet = (e) => {
     onChangeTimeValue(e);
     setDateValue(e)
   }
-
 
   return (
   <section className="formMain">
@@ -253,22 +267,39 @@ const FormMain = () => {
       <div className="formMain__form-inner">
         <input value={patronymic} onChange={(e) => setPatronymicValue(e.target.value)} className="formMain__form-input" type="patronymic" placeholder="Отчество*" required></input>
         {/*<input max={currentDate} min="1900-01-01" defaultValue={dataDataValue} onChange={(e) => setDateValue(e.target.value)} className={dateValue ? "formMain__form-input" :"formMain__form-input formMain__form-input-date"} type="date" placeholder={dateValue ? "" : "Дата рождения*  "} required></input>*/}
+          <label onClick={() => setIsOpen(true)} className="calendar">{isOpen ? "" : "Дата рождения*"}
+          {isOpen &&
           <DatePicker
-            className="calendar"
             onChange={onChangeTimeValueSet}
             value={timeValue}
             minDate={new Date(1900, 1)}
-            maxDate={new Date(currentYear - 18, 1)}
-            yearPlaceholder="гггг"
-            monthPlaceholder="мм"
-            dayPlaceholder="Дата рождения* дд"
-          />
+            maxDate={date}
+          />}</label>
       </div>
 
       <div className="formMain__form-inner">
-        {errorMail ? <span className="formMain__error-span">Enter correct email</span> : ""}
+        {errorMail ? <span className="formMain__error-span">Введите корректный email</span> : ""}
         <input defaultValue={dataEmail} onChange={(e) => setEmail(e.target.value)} className="formMain__form-input" type="email" placeholder="Email*" required></input>
-        <input defaultValue={dataTel} onChange={(e) => setTel(e.target.value)} className="formMain__form-input" type="tel" placeholder="Телефон*" required></input>
+        {/*<input defaultValue={dataTel} onChange={(e) => setTel(e.target.value)} className="formMain__form-input" type="tel" placeholder="Телефон*" required></input>*/}
+        <div className="phoneInput-div">
+        {errorPhoneSpan ? <span className="formMain__error-span">Введите корректный телефон</span> : ""}
+        <PhoneInput
+          containerClass="phoneInput"
+          inputClass={!errorPhone && "phoneInput-inner"}
+          placeholder={"Телефон*"}
+          onlyCountries={["ua"]}
+          country={'ua'}
+          value={tel}
+          onChange={phone => setTel(phone)}
+          isValid={(value) => {
+            if (value.match(/((\+)?\b(8|38)?(0[\d]{2}))([\d-]{5,8})([\d]{2})/)) {
+              setErrorPhone(false);
+            } else {
+              setErrorPhone(true);
+            }
+          }}
+        />
+        </div>
       </div>
 
       <div className="formMain__checkbox">

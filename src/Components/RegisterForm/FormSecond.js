@@ -100,6 +100,8 @@ const FormSecond = () => {
   const [buildRange, setBuildRange] = useState("");
   const [flatRange, setFlatRange] = useState("");
 
+  const [innError, setInnError] = useState(false);
+
   useEffect(() => {
     if (passport) {
       setPassportRange(5)
@@ -109,7 +111,12 @@ const FormSecond = () => {
   }, [passport])
 
   useEffect(() => {
-    if (inn) {
+    if (inn && inn.length > 0 && inn.length !== 10) {
+      setInnError(true)
+    } else {
+      setInnError(false)
+    }
+    if (inn && inn.length === 10) {
       setInnRange(6)
     } else {
       setInnRange(0)
@@ -203,8 +210,8 @@ const FormSecond = () => {
   /*//////////////////////////////////////*/
 
   useEffect(() => {
-    dispatch(setSecondFormData(passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, city, flat, inn, creditValue))
-  }, [passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, city, flat, inn, creditValue])
+    dispatch(setSecondFormData(passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, build, flat, inn, creditValue))
+  }, [passport, passportDate, passportPlaceOrgan, passportPlace, region, street, body, city, build, flat, inn, creditValue])
 
 
   const history = useHistory();
@@ -292,7 +299,7 @@ const FormSecond = () => {
             onChange={onChangeTimeValueSet}
             value={timeValue}
             minDate={new Date(1900, 1)}
-            maxDate={new Date(currentYear - 14, 1)}
+            maxDate={new Date()}
             yearPlaceholder="гггг"
             monthPlaceholder="мм"
             dayPlaceholder="Дата выдачи* дд"
@@ -303,13 +310,14 @@ const FormSecond = () => {
       </div>
 
       <input type="text" defaultValue={passportPlace} onChange={(e) => setPassportPlace(e.target.value)}  placeholder="Кем выдан*" className="formSecond__form-pasportData-input formSecond__form-pasportData-input-pass" required></input>
+      <span className={innError && "innError"}>Состоит из 10 цифр</span>
       <input type="number" defaultValue={inn} onChange={(e) => setInn(e.target.value)} placeholder="ИНН*" className="formSecond__form-pasportData-input formSecond__form-pasportData-input-pass" required></input>
       <label htmlFor="select">Выберите срок кредитования
       <select onChange={(e) => onChangeSelect(e.target.value)} id="select" value={creditValue} className="select-form formSecond__form-pasportData-input formSecond__form-pasportData-input-pass">
-        <option value="3 месяца">3 месяца</option>
-        <option value="6 месяцев">6 месяцев</option>
-        <option value="9 месяцев">9 месяцев</option>
-        <option value="12 месяцев">12 месяцев</option>
+        <option value="3">3 месяца</option>
+        <option value="6">6 месяцев</option>
+        <option value="9">9 месяцев</option>
+        <option value="12">12 месяцев</option>
       </select></label>
     </form>
 
@@ -318,7 +326,7 @@ const FormSecond = () => {
     <form className="formSecond__form-adress">
 
       <div className="formSecond__form-adress-inner">
-        <input type="text" defaultValue={region} onChange={(e) => setRegion(e.target.value)} placeholder="Регион*" className="formSecond__form-adress-inner-input" required></input>
+        <input type="text" defaultValue={region} onChange={(e) => setRegion(e.target.value)} placeholder="Область*" className="formSecond__form-adress-inner-input" required></input>
         <input type="text" defaultValue={street} onChange={(e) => setStreet(e.target.value)} placeholder="Улица*" className="formSecond__form-adress-inner-input" required></input>
         <input type="text" defaultValue={body} onChange={(e) => setBody(e.target.value)} placeholder="Строение/Корпус" className="formSecond__form-adress-inner-input"></input>
       </div>
@@ -341,7 +349,7 @@ const FormSecond = () => {
     <form className="formSecond__form-adress">
 
       <div className="formSecond__form-adress-inner">
-        <input type="text" value={!checkAdress ? region : secondRegion} onChange={(e) => setSecondRegion(e.target.value)} placeholder="Регион*" className={checkAdress ? "formSecond__form-adress-inner-input" : "formSecond__form-adress-inner-input formSecond__form-adress-inner-input  formSecond__form-adress-inner-input-disable"} required></input>
+        <input type="text" value={!checkAdress ? region : secondRegion} onChange={(e) => setSecondRegion(e.target.value)} placeholder="Область*" className={checkAdress ? "formSecond__form-adress-inner-input" : "formSecond__form-adress-inner-input formSecond__form-adress-inner-input  formSecond__form-adress-inner-input-disable"} required></input>
         <input type="text" value={!checkAdress ? street : secondStreet} onChange={(e) => setSecondStreet(e.target.value)} placeholder="Улица*" className={checkAdress ? "formSecond__form-adress-inner-input" : "formSecond__form-adress-inner-input formSecond__form-adress-inner-input  formSecond__form-adress-inner-input-disable"} required></input>
         <input type="text" value={!checkAdress ? body : secondBody} onChange={(e) => setSecondBody(e.target.value)} placeholder="Строение/Корпус" className={checkAdress ? "formSecond__form-adress-inner-input" : "formSecond__form-adress-inner-input formSecond__form-adress-inner-input  formSecond__form-adress-inner-input-disable"}></input>
       </div>

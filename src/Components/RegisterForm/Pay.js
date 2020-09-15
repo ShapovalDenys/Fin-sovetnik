@@ -37,7 +37,7 @@ const Pay = () => {
 
     <p className="pay__main-text">Для продолжения оформления заявки вам необходимо пройти активацию сервиса.</p>
 
-    <iframe src="https://api.fondy.eu/api/checkout/?design_id=61186&merchant_id=1455387&signature=35006d9bf9ebf8e25c7edf467b97705f6b4348d8" width="100%" height="820px" frameBorder="none"></iframe>
+    <iframe src="https://api.fondy.eu/s/5r8yHy7pH6T" width="100%" height="820px" frameBorder="none"></iframe>
 
     {/*<p className="pay__second-text">Укажите реквизиты вашей карты:</p>*/}
 

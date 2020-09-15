@@ -178,6 +178,7 @@ input[type="date"]:before {
   margin-bottom: 80px;
   background-color: white;
   font-size: 30px;
+  color: #757575;
 }
 
 @media screen and (max-width: 1132px) {
@@ -226,5 +227,46 @@ input[type="date"]:before {
 @media screen and (max-width: 600px) {
   .formMain {
     border-radius: 50px;
+  }
+}
+
+.phoneInput-div {
+  width: 45% !important;
+  border-bottom: 2px solid #dbdbdb;
+  height: 87px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.react-tel-input .form-control {
+  width: 100% !important;
+  font-size: 24px !important;
+}
+
+.phoneInput {
+  margin-bottom: 15px;
+}
+
+.phoneInput-inner {
+  background-color: rgba(148, 253, 88, 0.8) !important;
+  border: 1px solid rgba(148, 253, 88, 0.8) !important;
+}
+
+.react-tel-input .flag-dropdown.invalid-number {
+  border: 1px solid rgba(189, 189, 189, 0.7) !important;
+}
+
+@media screen and (max-width: 1132px) {
+  .phoneInput-div {
+    width: 100% !important;
+    margin-bottom: 50px;
+    margin-top: -20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .react-tel-input .form-control {
+    font-size: 14px !important;
   }
 }
